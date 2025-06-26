@@ -1,0 +1,72 @@
+package iamstillalive1;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.Duration;
+
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.collect.Table.Cell;
+
+public class rk1 {
+
+	public static void main(String[] args) throws IOException, InterruptedException {
+		WebDriver driver= new ChromeDriver();
+		driver.manage().window().maximize();
+
+		driver.get("https://dev.iamstillalive.com/");
+		driver.manage().window().maximize();
+		WebElement home=driver.findElement(By.xpath("//img[@alt='icon']"));
+		home.click();
+		WebElement signup=driver.findElement(By.xpath("//a[@href='/welcome/']"));
+		signup.click();
+//		File fi =    new File("C:\\Users\\hp\\OneDrive\\Desktop\\iam");
+//		FileInputStream in = new FileInputStream("testdata.xlsx");
+//		XSSFWorkbook wb=new XSSFWorkbook(in);
+// XSSFSheet sheet=xsf.getSheetAt(0);
+		
+		File file = new File("C:\Users\hp\OneDrive\Desktop\iam");
+        FileInputStream fis = new FileInputStream(file);
+        Workbook workbook = new XSSFWorkbook(fis);
+        Sheet sheet = (Sheet) workbook.getSheet("Sheet1");
+
+//        for (Row row : sheet) {
+//            for (Cell cell : row) {
+//                System.out.print(cell.getStringCellValue() + "\t");
+//            }
+//            System.out.println();
+//        }
+//        workbook.close();
+    
+
+// 
+		driver.findElement(By.xpath("//select[@id='category-dropdown']")).click();
+		driver.findElement(By.xpath("//option[@value='2']")).click();
+		Thread.sleep(3000);
+		//WebDriverWait wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		//wait.until(ExpectedConditions(By.id()));
+		driver.findElement(By.xpath("//select[@id='subcategory-dropdown']")).click();
+		driver.findElement(By.xpath("//option[@value='5']")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//button[@id='specialty-dropdown-btn']")).click();
+		driver.findElement(By.xpath("//div[@id='specialty-dropdown-container']//div[3]")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//a[@id='next-btn']")).click();
+		
+		
+	//driver.quit();
+	}
+
+}
